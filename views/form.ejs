@@ -40,6 +40,7 @@
             <td>l_name</td>
             <td>gender</td>
             <td>hobby</td>
+            <td>citty</td>
             <td>Actions</td>
         </tr>
         <% result.map((item) => { %>
@@ -49,6 +50,7 @@
                 <td><%= item.l_name %></td>
                 <td><%= item.gender %></td>
                 <td><%= item.hobby %></td>
+                <td><%=item.city%></td>
                 <td>
                     <button><a href="/deletedata?delet=<%= item.id %>">delete</a></button>
                     <button><a href="/editdata/<%= item.id %>">edit</a></button>

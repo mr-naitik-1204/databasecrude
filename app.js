@@ -32,16 +32,20 @@ app.get('/createdata', (req, res) => {
     const hobbies = Array.isArray(data.hobby) ? data.hobby.join(',') : data.hobby;
 
     if (id) {
-        const qry = `UPDATE register2 SET f_name = '${data.f_name}', l_name ='${data.l_name}', gender ='${data.gender}', hobby ='${data.hobbies}', city = '${data.city}' WHERE id = '${data.id}'`;
+        const qry = `UPDATE register2 SET f_name ='${data.f_name}', l_name = '${data.l_name}', gender = '${data.gender}', hobby = '${ hobbies}', city = '${ data.city}' WHERE id = '${ id}'`;
+        
+        
         con.query(qry,  (err) => {
             if (err) throw err;
             console.log("Data updated successfully");
+            id = null; 
             res.redirect('/');
         });
-        id=null;
     } else {
         const qry = `INSERT INTO register2 (f_name, l_name, gender, hobby, city) VALUES ('${data.f_name}', '${data.l_name}', '${data.gender}', '${hobbies}', '${data.city}')`;
-        con.query(qry,  (err) => {
+       
+
+        con.query(qry, (err) => {
             if (err) throw err;
             console.log("Data inserted successfully");
             res.redirect('/');
